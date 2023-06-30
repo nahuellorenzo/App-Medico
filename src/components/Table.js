@@ -2,11 +2,13 @@ import { db } from '../firebase/config';
 import { useEffect, useState } from 'react';
 import { collection, query, getDocs } from 'firebase/firestore';
 import './table.css';
+import { Loader } from './Loader';
 
 export const Table = () => {
     const [response, setResponse] = useState(null);
     const [searchEmail, setSearchEmail] = useState('');
     const [filteredData, setFilteredData] = useState([]);
+    const [loader, setLoader] = useState(true);
 
     useEffect(() => {
         const fetchScores = async () => {
@@ -17,6 +19,7 @@ export const Table = () => {
             const data = resp.docs.map((doc) => doc.data());
             setResponse(data);
             setFilteredData(data);
+            setLoader(false);
 
             resp.docs.forEach((doc) => {
                 console.log(doc.data());
@@ -34,6 +37,10 @@ export const Table = () => {
     };
 
     return (
+        <div>
+        {
+            loader ? <Loader />: (
+        
         <div className="table-container">
             <div className="search-container">
                 <div className="input__container input__container--variant">
@@ -85,6 +92,7 @@ export const Table = () => {
                 </tbody>
             </table>
             </div>
+        </div>)}
         </div>
     );
 };
