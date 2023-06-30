@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.h1{
+    font-size: 3rem;
+    margin: 2rem 2rem 1rem 1rem;
+    font-family: 'Roboto', sans-serif;
+   
+}
+
+.container{
+    padding-left: 2rem;
+}
+
+.h2{
+    font-size: 1rem;
+    margin: 0rem 2rem 1rem 1rem;
+    font-family: 'Roboto', sans-serif;
+   
+}
+
+@media screen and (max-width: 768px) {
+    .h1{
+        font-size: 2rem;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .h2{
+        font-size: 1rem;
+    }
+}
