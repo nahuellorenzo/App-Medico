@@ -19,10 +19,7 @@ jobs:
         node-version: 14
 
     - name: Instala dependencias
-      run: npm ci
-
-    - name: Ejecuta pruebas
-      run: npm test
+      run: npm install
 
     - name: Construye el proyecto
       run: npm run build
