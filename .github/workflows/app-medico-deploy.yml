@@ -22,4 +22,4 @@ jobs:
       run: npm install
 
     - name: Construye el proyecto
-      run: npm run start
+      run: npm run build
