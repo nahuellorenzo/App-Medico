@@ -42,7 +42,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.MY_GITHUB_TOKEN }}"
           MERGE_LABELS: "automated-pr,!blocked"
           MERGE_METHOD: "squash"
-          MERGE_COMMIT_MESSAGE: "Automatic merge of PR #{pullRequest.number}"
+          MERGE_COMMIT_MESSAGE: "Automatic merge of PR"
           MERGE_FORKS: "false"
           UPDATE_LABELS: "automated-pr"
           MERGE_RETRIES: "1000"
