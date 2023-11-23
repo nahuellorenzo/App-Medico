@@ -34,18 +34,10 @@ jobs:
 
   auto_merge:
     needs: create_pr
-    if: github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Automerge
-        uses: pascalgn/automerge-action@v0.14.3
-        env:
-          GITHUB_TOKEN: "${{ secrets.MY_GITHUB_TOKEN }}"
-          MERGE_LABELS: "automated-pr,!blocked"
-          MERGE_METHOD: "squash"
-          MERGE_COMMIT_MESSAGE: "Automatic merge of PR"
-          MERGE_FORKS: "false"
-          UPDATE_LABELS: "automated-pr"
-          MERGE_RETRIES: "1000"
-          MERGE_RETRY_SLEEP: "60000"
-          LOG_LEVEL: "DEBUG"
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          PRESET: 'ALL'
