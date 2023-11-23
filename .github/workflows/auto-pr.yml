@@ -47,3 +47,4 @@ jobs:
           UPDATE_LABELS: "automated-pr"
           MERGE_RETRIES: "1000"
           MERGE_RETRY_SLEEP: "60000"
+          LOG_LEVEL: "DEBUG"
