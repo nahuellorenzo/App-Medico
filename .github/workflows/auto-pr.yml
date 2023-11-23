@@ -33,6 +33,7 @@ jobs:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
   auto_merge:
+    if: github.event.pull_request.base.ref == 'main'
     needs: create_pr
     runs-on: ubuntu-latest
     steps:
