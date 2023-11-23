@@ -30,5 +30,10 @@ jobs:
     - name: Instala Vercel CLI
       run: npm i -g vercel
 
-    - name: Despliega a Vercel
+    - name: Despliega a Vercel (entorno de desarrollo)
+      if: github.ref == 'refs/heads/dev'
+      run: vercel --token ${{ secrets.VERCEL_TOKEN }} -y
+
+    - name: Despliega a Vercel (entorno de producción)
+      if: github.ref == 'refs/heads/main'
       run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod -y
