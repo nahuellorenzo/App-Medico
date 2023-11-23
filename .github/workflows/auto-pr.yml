@@ -1,0 +1,33 @@
+name: Auto PR
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Crea PR
+        run: |
+          PR_BODY="Este PR fue creado automáticamente por GitHub Actions."
+          PR_TITLE="PR automático: ${GITHUB_REF#refs/heads/}"
+          PR_LABELS="automated-pr"
+          PR_BASE="main"
+          PR_HEAD="${GITHUB_REF#refs/heads/}"
+          
+          RESPONSE=$(curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.MY_GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls \
+            -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"$PR_HEAD\",\"base\":\"$PR_BASE\",\"labels\":[\"$PR_LABELS\"]}")
+          
+          echo "Respuesta de la API de GitHub: $RESPONSE"
+          
+          PR_URL=$(echo $RESPONSE | jq -r .html_url)
+          
+          echo "PR creado: $PR_URL"
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
