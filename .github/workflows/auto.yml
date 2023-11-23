@@ -13,3 +13,6 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.MY_GITHUB_TOKEN }}"
           MERGE_LABELS: "automated-pr"
+          MERGE_METHOD: "merge"
+          MERGE_RETRIES: "10"
+          MERGE_RETRY_SLEEP: "60000"
