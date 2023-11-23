@@ -13,21 +13,33 @@ jobs:
         run: |
           PR_BODY="Este PR fue creado automáticamente por GitHub Actions."
           PR_TITLE="PR automático: ${GITHUB_REF#refs/heads/}"
-          PR_LABELS="automated-pr"
+          PR_LABELS="bug"
           PR_BASE="main"
           PR_HEAD="${GITHUB_REF#refs/heads/}"
           
+          # Crea el PR
           RESPONSE=$(curl \
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.MY_GITHUB_TOKEN }}" \
             https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls \
-            -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"$PR_HEAD\",\"base\":\"$PR_BASE\",\"labels\":[\"$PR_LABELS\"]}")
+            -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"$PR_HEAD\",\"base\":\"$PR_BASE\"}")
           
           echo "Respuesta de la API de GitHub: $RESPONSE"
           
           PR_URL=$(echo $RESPONSE | jq -r .html_url)
+          PR_NUMBER=$(echo $RESPONSE | jq -r .number)
           
           echo "PR creado: $PR_URL"
+
+          # Asigna la etiqueta
+          RESPONSE=$(curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.MY_GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/labels \
+            -d "{\"labels\":[\"$PR_LABELS\"]}")
+
+          echo "Etiqueta asignada: $RESPONSE"
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
