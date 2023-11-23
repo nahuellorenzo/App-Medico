@@ -13,7 +13,7 @@ jobs:
         run: |
           PR_BODY="Este PR fue creado automáticamente por GitHub Actions."
           PR_TITLE="PR automático: ${GITHUB_REF#refs/heads/}"
-          PR_LABELS="automated-pr"
+          PR_LABELS="bug"
           PR_BASE="main"
           PR_HEAD="${GITHUB_REF#refs/heads/}"
           
