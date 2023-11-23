@@ -27,6 +27,14 @@
   z-index: 2;
 }
 
+.containerLoader{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+}
+
 .hamster {
   animation: hamster var(--dur) ease-in-out infinite;
   top: 50%;

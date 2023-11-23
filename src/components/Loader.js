@@ -3,6 +3,7 @@ import "./Loader.css"
 export const Loader = () => {
 
     return (
+		<div className="containerLoader">
         <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
 	<div class="wheel"></div>
 	<div class="hamster">
@@ -20,6 +21,7 @@ export const Loader = () => {
 		</div>
 	</div>
 	<div class="spoke"></div>
+</div>
 </div>
     )
 
