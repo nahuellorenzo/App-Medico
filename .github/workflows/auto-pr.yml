@@ -35,3 +35,19 @@ jobs:
         echo "PR creado: $PR_URL"
       env:
         MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+  auto_merge:
+    needs: create_pr
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automerge
+        uses: pascalgn/automerge-action@v0.14.3
+        env:
+          GITHUB_TOKEN: "${{ secrets.MY_GITHUB_TOKEN }}"
+          MERGE_LABELS: "automated-pr,!blocked"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "Automatic merge of PR #{pullRequest.number}"
+          MERGE_FORKS: "false"
+          UPDATE_LABELS: "automated-pr"
+          MERGE_RETRIES: "1000"
+          MERGE_RETRY_SLEEP: "60000"     
