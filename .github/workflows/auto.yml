@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: automerge
         if: github.event.pull_request.head.ref == 'dev'
-        uses: pascalgn/automerge-action@v0.14.3
+        uses: pascalgn/automerge-action@v0.15.6
         env:
           GITHUB_TOKEN: "${{ secrets.MY_GITHUB_TOKEN }}"
           MERGE_LABELS: "automated-pr"
