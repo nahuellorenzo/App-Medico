@@ -13,7 +13,7 @@ jobs:
           ref: "${{ github.event.pull_request.head.sha }}"
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           wait-interval: 10 # seconds
-          ignore-checks: "automerge"
+          check-name: "Auto PR, CI para proyecto React"
       - name: automerge
         if: github.event.pull_request.head.ref == 'dev'
         uses: pascalgn/automerge-action@v0.14.3
