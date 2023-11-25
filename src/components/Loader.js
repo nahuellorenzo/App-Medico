@@ -8,7 +8,7 @@ export const Loader = () => {
 	<div class="wheel"></div>
 	<div class="hamster">
 		<div class="hamster__body">
-			<div class="hamster__head">
+			<div class="hamster__head"
 				<div class="hamster__ear"></div>
 				<div class="hamster__eye"></div>
 				<div class="hamster__nose"></div>
